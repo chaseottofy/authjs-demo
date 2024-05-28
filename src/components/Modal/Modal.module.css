@@ -1,0 +1,62 @@
+/* Modal.module.css */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--offsetblack2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-overlay);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.modal {
+  background-color: var(--black2);
+  padding: var(--p2) var(--p3);
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  z-index: var(--z-modal);
+  animation: slideIn 0.2s ease-in-out;
+}
+
+.modal-header {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--grey6);
+  margin-bottom: var(--p5);
+  position: relative;
+  padding-left: var(--p3);
+}
+
+.modal-header::before {
+  content: '> ';
+  left: 0;
+  position: absolute;
+}
+
+.closeButton {
+  margin-top: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

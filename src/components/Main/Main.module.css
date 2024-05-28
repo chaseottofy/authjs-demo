@@ -1,0 +1,22 @@
+.main {
+  position: relative;
+  z-index: var(--z-main);
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  padding-top: var(--header-height);
+  margin: 0 auto;
+}
+
+.main h1 {
+  color: var(--grey4);
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: var(--max-width-md);
+  height: 100%;
+  padding-bottom: var(--p8);
+  margin: 0 auto;
+}

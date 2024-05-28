@@ -1,0 +1,16 @@
+.footer {
+  overflow: hidden;
+  width: 100%;
+  height: var(--footer-height);
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  max-width: var(--max-width-md);
+  height: 100%;
+  align-items: center;
+  padding: 0 var(--p4);
+  margin: 0 auto;
+}

@@ -1,0 +1,93 @@
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100vw;
+  height: 100%;
+  max-height: 100vh;
+  pointer-events: none;
+  user-select: none;
+}
+
+.svg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  visibility: 'hidden';
+}
+
+.underlay {
+  position: fixed;
+  z-index: 600;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  margin: 0 auto;
+  background: linear-gradient(320.54deg, rgb(77, 80, 64) 0%, rgb(10, 45, 65) 72.37%), linear-gradient(58.72deg, rgb(177, 218, 83) 0%, rgb(242, 22, 90) 100%), linear-gradient(121.28deg, rgb(177, 19, 161) 0%, rgb(78, 83, 94) 100%), linear-gradient(121.28deg, rgb(32, 91, 65) 0%, rgb(173, 151, 250) 100%), linear-gradient(rgb(15, 68, 201) 0%, rgb(16, 139, 134) 0.5%, rgb(252, 103, 248) 100%), linear-gradient(52.23deg, rgb(101, 186, 205) 0%, rgb(18, 114, 223) 100%), linear-gradient(121.28deg, rgb(43, 177, 67) 0%, rgb(240, 166, 109) 100%), radial-gradient(50% 72.12% at 50% 50%, rgb(166, 77, 54) 0%, rgb(164, 185, 236) 100%);
+  background-blend-mode: screen, color-dodge, color-burn, screen, overlay, difference, color-dodge, screen;
+  background-repeat: no-repeat;
+  background-size: 200% 300%;
+  filter: hue-rotate(285deg) contrast(2.3) brightness(.8);
+}
+
+.underlay::after {
+  position: fixed;
+  z-index: 603;
+  left: 0;
+  width: 100%;
+  min-width: 100%;
+  height: var(--header-height);
+  margin: 0 auto;
+  background-color: rgba(15, 17, 18, .5);
+  content: '';
+  opacity: 0;
+}
+
+.overlay-two {
+  position: fixed;
+  z-index: 9000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  filter: invert(1);
+  mix-blend-mode: lighten;
+  opacity: .16;
+  pointer-events: none;
+  user-select: none;
+}
+
+.overlay-two::after {
+  position: fixed;
+  z-index: 9001;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  content: '';
+  filter: url("#grainy2");
+  pointer-events: none;
+  user-select: none;
+}
+
+.header-underlay {
+  position: fixed;
+  z-index: 910;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: #09090b;
+  mix-blend-mode: screen;
+  opacity: 1;
+  pointer-events: none;
+  user-select: none;
+}
