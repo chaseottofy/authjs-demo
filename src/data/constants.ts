@@ -1,10 +1,10 @@
-import { NavLinkProps } from '@/models/interfaces';
+import { RouteRecordItem } from '@/models/interfaces';
 
-export const NAV: NavLinkProps = {
-  accountRoute: { name: 'Account', href: '/', target: '_self' },
-  dashboardRoute: { name: 'Dashboard', href: '/', target: '_self' },
-  githubRoute: { name: 'GitHub', href: 'https://github.com/chaseottofy', target: '_blank' },
+export const ROUTE_RECORDS: RouteRecordItem = {
+  dashboardRoute: { name: 'Dashboard', href: '/dashboard', target: '_self' },
+  notesRoute: { name: 'Notes', href: '/notes', target: '_self' },
   homeRoute: { name: 'Home', href: '/', target: '_self' },
+  githubRoute: { name: 'GitHub', href: 'https://github.com/chaseottofy', target: '_blank' },
 };
 
 export const THEMES = ['light', 'dark', 'system'];
@@ -37,3 +37,4 @@ export const INVALID_CHARS: Record<string, string> = {
   '\r': 'carriage return',
   '\f': 'form feed',
 };
+

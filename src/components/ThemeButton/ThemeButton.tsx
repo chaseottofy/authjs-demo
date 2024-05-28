@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useTheme as useNextTheme } from 'next-themes';
+import Button from '@/components/ui/Button/Button';
 import Icons from '@/components/Icons/Icons';
 import Skeleton from '@/components/ui/Skeleton/Skeleton';
 
@@ -16,7 +17,7 @@ export default function ThemeButton({
   useEffect(() => setMounted(true), []);
 
   return (
-    <button
+    <Button
       className={className}
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       title='change theme'
@@ -28,6 +29,6 @@ export default function ThemeButton({
           ? (<Sun className='svg-5' />)
           : (<Moon className='svg-5' />))
         : (<Skeleton className='svg-5' />)}
-    </button>
+    </Button>
   );
 }

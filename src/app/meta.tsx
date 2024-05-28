@@ -7,7 +7,10 @@ type DescriptionType = Metadata['description'];
 type IconsType = Metadata['icons'];
 
 export const authors: AuthorType = [
-  { name: 'chase ottofy', url: 'https://ottofy.dev' },
+  { 
+    name: 'chase ottofy', 
+    url: 'https://ottofy.dev' 
+  },
 ];
 export const creator: CreatorType = 'chase ottofy';
 export const description: DescriptionType = 'auth demo';
@@ -26,3 +29,13 @@ export const keywords: KeywordsType = [
   'react',
   'nextjs',
 ];
+
+export const metadata: Metadata = {
+  authors,
+  creator,
+  description,
+  icons,
+  keywords,
+  title: 'auth demo',
+  metadataBase: null,
+};

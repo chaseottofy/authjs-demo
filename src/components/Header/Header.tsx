@@ -3,9 +3,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-import { NAV } from '@/data/constants';
+import { ROUTE_RECORDS } from '@/data/constants';
 
-import Modal from '../Modal/Modal';
 import Icons from '../Icons/Icons';
 import styles from './Header.module.css';
 import LogInForm from '../LogInForm/LogInForm';
@@ -13,18 +12,38 @@ import ThemeButton from '../ThemeButton/ThemeButton';
 import NavLink from '../Nav/NavLink';
 import Button from '../ui/Button/Button';
 import MobileMenu from '../MobileMenu/MobileMenu';
+import { useModal } from '@/hooks';
 
 const { Logo, GithubIcon, Menu } = Icons;
-const { githubRoute, homeRoute } = NAV;
+const {
+  githubRoute,
+  homeRoute,
+  notesRoute,
+  dashboardRoute,
+} = ROUTE_RECORDS;
 
 export default function Header() {
-  const [showLogIn, setShowLogIn] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const { showModal } = useModal();
+  const [showLogIn, setShowLogIn] = useState<boolean>(false);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
-  const openLogIn = () => setShowLogIn(true);
-  const closeLogIn = () => setShowLogIn(false);
-  const openMenu = () => setShowMenu(true);
-  const closeMenu = () => setShowMenu(false);
+  const handleToggleLogIn = () => {
+    setShowLogIn(!showLogIn);
+    showModal((onClose) => (
+      <LogInForm onClose={() => {
+        setShowLogIn(false);
+        if (onClose) {
+          onClose();
+        }
+      }}
+      />
+    ));
+  };
+  const handleToggleMenu = () => {
+    setShowMenu(!showMenu);
+    showModal(() => <MobileMenu />);
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.content}>
@@ -37,12 +56,13 @@ export default function Header() {
         <div className={styles.col2}>
           <nav className={styles.nav}>
             <ul className={styles['nav-list']}>
-              <li className={styles['nav-item']}>
-                <NavLink props={homeRoute} className={`${styles['nav-link']} link-1`} />
-              </li>
-              <li className={`${styles['nav-item']}`}>
-                <NavLink props={homeRoute} className={`${styles['nav-link']} link-1`} />
-              </li>
+              {[homeRoute, notesRoute, dashboardRoute].map((route, i) => {
+                return (
+                  <li className={styles['nav-item']} key={route.name + i}>
+                    <NavLink props={route} className={`${styles['nav-link']} link-1`} />
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
@@ -50,7 +70,7 @@ export default function Header() {
         <div className={styles.col3}>
           <Button
             className={`${styles['log-in--btn']} btn-primary2`}
-            onClick={openLogIn}
+            onClick={handleToggleLogIn}
             title='Open Form'
             aria-haspopup={true}
             aria-expanded={showLogIn}
@@ -58,13 +78,6 @@ export default function Header() {
           >
             Log in
           </Button>
-          <Modal
-            isOpen={showLogIn}
-            onClose={closeLogIn}
-            title='Log In'
-          >
-            <LogInForm />
-          </Modal>
 
           <NavLink props={githubRoute} className={`${styles['github-btn--header']} btn-icon1`}>
             <GithubIcon className='svg-4' />
@@ -77,7 +90,7 @@ export default function Header() {
           <Button
             className={`${styles['menu-btn--header']} btn-icon1`}
             type='button'
-            onClick={openMenu}
+            onClick={handleToggleMenu}
             aria-haspopup={true}
             aria-expanded={showLogIn}
             id='log-in-btn'
@@ -85,16 +98,8 @@ export default function Header() {
           >
             <Menu className='svg-2' />
           </Button>
-
-          <Modal
-            isOpen={showMenu}
-            onClose={closeMenu}
-            title='Menu'
-          >
-            <MobileMenu />
-          </Modal>
         </div>
       </div>
-    </header >
+    </header>
   );
 }

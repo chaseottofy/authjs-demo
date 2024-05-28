@@ -46,7 +46,9 @@ export interface Inputs {
   remember: boolean;
 }
 
-export type ModalContent = (onClose: () => void) => React.ReactNode;
+export type ModalContent = (
+  onClose?: () => void,
+) => React.ReactNode;
 
 export interface ModalContextProps {
   hideModal: () => void;
@@ -56,15 +58,15 @@ export interface ModalContextProps {
 
 export interface ModalProps {
   isOpen: boolean;
-  content: ModalContent;
   onClose: () => void;
+  content: ModalContent;
 }
 
 export interface ModalProviderProps {
   children: React.ReactNode;
 }
 
-export type NavLinkProps = Record<string, { name: string; href: string; target: string; }>;
+export type RouteRecordItem = Record<string, { name: string; href: string; target: string; }>;
 
 export type SetStateType<T> = React.Dispatch<React.SetStateAction<T>>;
 

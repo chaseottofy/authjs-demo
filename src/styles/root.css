@@ -20,6 +20,7 @@
   --linear-share1: linear-gradient(150deg, #131415 0%, #0D0D0F 50%, #0077D2 95%);
   --linear-share2: linear-gradient(150deg, var(--secondary4) 0%, var(--secondary5) 50%, #0077D2 95%);
   --linear-share3: linear-gradient(150deg, #070712 0%, #020203 50%, #0077D2 95%);
+  --linear-share4: linear-gradient(150deg, #131415 0%, #0D0D0F 50%, #012f51 95%);
   --primary1: #ff2969;
   --secondary1: #161C8C;
   --secondary2: #161A73;

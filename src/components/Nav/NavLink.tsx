@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-import { NavLinkProps } from '@/models/interfaces';
+import { RouteRecordItem } from '@/models/interfaces';
 
 export default function NavLink({
   props: { name, href, target },
   className,
   children,
 }: {
-  props: NavLinkProps[keyof NavLinkProps];
+  props: RouteRecordItem[keyof RouteRecordItem];
   className: string;
   children?: React.ReactNode;
 }) {

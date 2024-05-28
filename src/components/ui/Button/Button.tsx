@@ -25,7 +25,7 @@ export type ButtonBaseProps = {
 };
 
 export type ButtonProps = ButtonBaseProps & {
-  variant?: 'primary' | 'secondary' | 'tertiary';
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'icon-text';
   size?: 'small' | 'medium' | 'large';
 };
 /*
@@ -43,6 +43,7 @@ export default function Button({
   type = 'button',
   hidden = false,
   children,
+
   ...rest
 }: ButtonProps) {
   return (
