@@ -1,0 +1,50 @@
+.dots-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-width: 1px;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.dots {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  width: fit-content;
+  margin-left: 30px;
+}
+
+.dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  padding-left: 2px;
+  border-radius: 50%;
+  margin-left: 5px;
+  animation-duration: 1.4s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-name: loading-dots;
+  background-color: var(--grey2);
+}
+
+@keyframes loading-dots {
+  0% {
+    opacity: .2;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: .2;
+  }
+}

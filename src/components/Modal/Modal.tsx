@@ -1,7 +1,7 @@
 // Modal.tsx
 import React, { useEffect, useRef } from 'react';
 import styles from './Modal.module.css';
-
+import Button from '../ui/Button/Button';
 import Icons from '../Icons/Icons';
 
 interface ModalProps {
@@ -10,6 +10,7 @@ interface ModalProps {
   children: React.ReactNode;
   title: string;
   description?: string;
+  className?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -18,6 +19,7 @@ const Modal: React.FC<ModalProps> = ({
   children,
   title,
   description,
+  className,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -75,10 +77,11 @@ const Modal: React.FC<ModalProps> = ({
       className={styles.overlay}
       ref={modalRef}
       onClick={handleOverlayClick}
-      aria-hidden="true"
+      aria-hidden={!isOpen}
     >
       <div
-        className={styles.modal}
+        data-custom-scrollbar
+        className={`${styles.modal} ${className}`}
         ref={contentRef}
         role="dialog"
         aria-modal="true"
@@ -91,9 +94,13 @@ const Modal: React.FC<ModalProps> = ({
           <h2 id="modal-title">{title}</h2>
           {description && <p id="modal-description">{description}</p>}
 
-          <button className={'btn-icon1'} onClick={onClose} aria-label="Close">
+          <Button
+            className='btn-icon1'
+            onClick={onClose}
+            aria-label="Close"
+          >
             <Close className='svg-4' />
-          </button>
+          </Button>
         </div>
         {children}
       </div>

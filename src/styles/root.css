@@ -8,9 +8,6 @@
   src: local(arial);
 }
 
-/* --temp4: linear-gradient(210deg, #3F179A, #141351 50%); */
-
-/* --temp6: rgba(96, 157, 233, 0.9); */
 :root {
   --secondaryFont: 'Adjusted Arial Fallback';
   --monospaceFont: monospace;

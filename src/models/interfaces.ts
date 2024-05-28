@@ -24,7 +24,11 @@ export type FormElementNames = 'email' | 'password' | 'remember';
 
 export interface FormProps {
   onClose: () => void;
+  onOpen: () => void;
+  open: boolean;
+  inputs: Inputs;
 }
+
 
 export interface GetUsersResponsePayload {
   id: number;
