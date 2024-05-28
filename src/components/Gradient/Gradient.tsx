@@ -1,10 +1,8 @@
 import * as React from 'react';
 
-import Icons from '../Icons/Icons';
+import Icon from '../Icons/Icon';
 
 import styles from './Gradient.module.css';
-
-const { GradientFill } = Icons;
 
 /**
  *
@@ -34,7 +32,7 @@ const { GradientFill } = Icons;
 export default function Gradient() {
   return (
     <aside className={styles.wrappeer}>
-      <GradientFill className={styles.svg} />
+      <Icon title='GradientFill' className={styles.svg} />
       <div className={styles.underlay} />
       <div className={styles['overlay-two']} />
       <div className={styles['header-underlay']} />

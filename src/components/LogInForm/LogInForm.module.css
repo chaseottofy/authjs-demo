@@ -65,17 +65,6 @@
   user-select: none;
 }
 
-.disabled input:not([type="checkbox"]) {
-  position: relative;
-  animation: skeleton-loading 8s ease-in-out infinite;
-  background-color: transparent !important;
-  background-image: var(--linear2) !important;
-  background-size: 400% 100%;
-  color: transparent !important;
-  pointer-events: none !important;
-  user-select: none !important;
-}
-
 .fieldset {
   position: relative;
   display: flex;
@@ -101,7 +90,12 @@
 
 .submit:first-child {
   margin-right: var(--p4);
-  background-image: var(--linear-share1);
+  background-image: var(--linear-share2);
+}
+
+.submit:last-child {
+  background-image: var(--black1);
+
 }
 
 .form-error {

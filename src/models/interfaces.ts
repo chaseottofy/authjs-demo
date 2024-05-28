@@ -72,11 +72,15 @@ export type SetStateType<T> = React.Dispatch<React.SetStateAction<T>>;
 
 export type TimeoutId = ReturnType<typeof setTimeout>;
 
-export interface UserInterface {
-  id: number;
+export interface User {
   email: string;
-  remember: boolean;
   password: string;
+}
+
+export interface UserRequest {
+  email: string;
+  password: string;
+  isSignUp: boolean;
 }
 
 export interface Warning {

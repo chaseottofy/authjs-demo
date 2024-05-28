@@ -4,7 +4,7 @@ import React from 'react';
 import { useCallback } from 'react';
 import { useClickOutside } from '@/hooks';
 import Button from '../Button/Button';
-import Icons from '../../Icons/Icons';
+import Icon from '../../Icons/Icon';
 import type { ModalProps } from '@/models/interfaces';
 
 import styles from './Modal.module.css';
@@ -20,8 +20,6 @@ export default function Modal({
   content,
 }: ModalProps) {
   if (!isOpen) return null;
-  const { Close } = Icons;
-
   const modalRef = useClickOutside<HTMLDivElement>(onClose) as React.RefObject<HTMLDivElement>;
 
   const handleOverlayClick = useCallback(
@@ -60,7 +58,7 @@ export default function Modal({
             onClick={onClose}
             aria-label="Close"
           >
-            <Close className='svg-4' />
+            <Icon title='Close' className='svg-4' />
           </Button>
         </div>
         <div

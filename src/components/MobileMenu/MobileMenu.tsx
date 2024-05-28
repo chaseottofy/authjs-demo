@@ -4,10 +4,7 @@ import styles from './MobileMenu.module.css';
 
 import NavLink from '../Nav/NavLink';
 
-// import { NAV } from '@/data/constants';
-// const { githubRoute, homeRoute, notesRoute } = NAV;
 import { ROUTE_RECORDS } from '@/data/constants';
-// const { homeRoute, notesRoute } = ROUTE_RECORDS;
 const {
   // githubRoute,
   homeRoute,

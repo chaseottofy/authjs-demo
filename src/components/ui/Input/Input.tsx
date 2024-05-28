@@ -33,11 +33,11 @@ export interface BaseInputProps extends RestInputProps {
 
 export default function Input({
   type,
-  required,
   id,
   disabled,
   name,
-  className = styles.input,
+  required,
+  className = 'input-1',
   value,
   ...rest
 }: BaseInputProps) {
@@ -46,10 +46,10 @@ export default function Input({
       id={id}
       name={name}
       type={type}
-      required={required}
       disabled={disabled}
       className={className}
       value={value}
+      required={required}
       {...rest}
     />
   );

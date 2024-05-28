@@ -1,13 +1,13 @@
 'use client';
 
 import * as React from 'react';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-// import { useRouter } from 'next/navigation';
 // import { createClient } from '@/server/supabase/server';
+// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
 
 import styles from './LogInForm.module.css';
-
 import { type FormData } from '@/models/schema';
 import { validateForm } from '@/validation/validateForm';
 import {
@@ -16,13 +16,13 @@ import {
   MIN_PASSWORD_LENGTH
 } from '@/data/constants';
 
-import Icons from '../Icons/Icons';
+import Button from '../ui/Button/Button';
+import Icon from '../Icons/Icon';
 import Input from '../ui/Input/Input';
 import Label from '../ui/Label/Label';
-import Button from '../ui/Button/Button';
 import PasswordButton from '../ui/PasswordButton/PasswordButton';
-import { useModal } from '@/hooks';
 import Spinner from '../ui/Spinner/Spinner';
+import { useModal } from '@/hooks';
 
 const {
   password: MAX_PASSWORD_LENGTH,
@@ -36,10 +36,11 @@ export default function LogInForm({
 }) {
   const router = useRouter();
   const { updateModal } = useModal();
-  const { Mail, GithubIcon } = Icons;
+
   const [chooseEmail, setChooseEmail] = useState<boolean>(false) as [boolean, React.Dispatch<React.SetStateAction<boolean>>];
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [revealPass, setRevealPass] = useState<boolean>(false);
+
   const [inputWarn, setInputWarn] = useState<string>('') as [string, React.Dispatch<React.SetStateAction<string>>];
   const [serverMessage, setServerMessage] = useState<string>('') as [string, React.Dispatch<React.SetStateAction<string>>];
 
@@ -48,6 +49,7 @@ export default function LogInForm({
     password: '',
     isSignUp: false,
   }) as [FormData, React.Dispatch<React.SetStateAction<FormData>>];
+
   const [formErrors, setFormErrors] = useState<Partial<Record<keyof FormData, string | undefined>>>({
     email: undefined,
     password: undefined,
@@ -55,18 +57,14 @@ export default function LogInForm({
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked, validity } = e.target;
-    const { typeMismatch, tooLong, tooShort } = validity;
+    const { name, value, type, checked, validity, validationMessage } = e.target;
+    const { valid } = validity;
+
     setFormErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: typeMismatch
-        ? 'Invalid email'
-        : tooLong
-          ? 'Input is too long'
-          : tooShort
-            ? 'Input is too short'
-            : undefined,
+      [name]: valid ? undefined : validationMessage
     }));
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === 'checkbox' ? checked : value
@@ -85,7 +83,6 @@ export default function LogInForm({
     }
 
     const { email, password, isSignUp } = formData;
-
     try {
       const response = await fetch('/api/login', {
         method: 'POST',
@@ -94,8 +91,12 @@ export default function LogInForm({
         },
         body: JSON.stringify({ email, password, isSignUp }),
       });
-
-      if (response.ok) {
+      if (response.status === 200) {
+        onClose();
+        router.push('/dashboard');
+        return;
+      }
+      else if (response.status === 201 ) {
         updateModal(() => (
           <div className={styles['form-error']}>
             <h2>USER: {email}</h2>
@@ -106,8 +107,11 @@ export default function LogInForm({
           onClose();
           router.push('/dashboard');
         }, 2_000);
-      } else {
+        return;
+      }
+      else {
         const errorData = await response.json();
+        console.log(errorData)
         setServerMessage(errorData.error);
         if ('input' in errorData) setInputWarn(errorData.input);
         setIsSubmitting(false);
@@ -146,7 +150,7 @@ export default function LogInForm({
             type='button'
             title='Continue with Github'
           >
-            <span><GithubIcon className='svg-5' /></span>
+            <span><Icon title='GithubIcon' className='svg-5' /></span>
             <span>Continue with Github</span>
           </Button>
         </div>
@@ -157,7 +161,7 @@ export default function LogInForm({
             title='Continue with Email'
             onClick={() => setChooseEmail(true)}
           >
-            <span><Mail className='svg-5' /></span>
+            <span><Icon title='Mail' className='svg-5' /></span>
             <span>Continue with Email</span>
           </Button>
         </div>
@@ -169,19 +173,18 @@ export default function LogInForm({
           <div className={styles.fieldset}>
             <Label htmlFor='email'>email *</Label>
             <Input
-              autoFocus
               autoComplete='email'
-              className='input-1'
-              data-has-warn={(formErrors.email !== undefined)}
+              autoFocus
               data-has-error={inputWarn === 'email'}
+              data-has-warn={(formErrors.email !== undefined)}
               disabled={isSubmitting}
-              name='email'
               id='email'
+              maxLength={MAX_EMAIL_LENGTH}
+              name='email'
+              onChange={handleChange}
               required
               type='email'
               value={formData.email}
-              onChange={handleChange}
-              maxLength={MAX_EMAIL_LENGTH}
             />
             <br />
           </div>
@@ -194,19 +197,18 @@ export default function LogInForm({
             <span className='relative-wrapper'>
               <Input
                 autoComplete='new-password'
-                className='input-1'
-                name='password'
-                disabled={isSubmitting}
-                data-has-warn={(formErrors.password !== undefined)}
                 data-has-error={inputWarn === 'password'}
+                data-has-warn={(formErrors.password !== undefined)}
                 data-reveal={revealPass}
+                disabled={isSubmitting}
                 id='password'
-                required
-                value={formData.password}
-                onChange={handleChange}
-                type={revealPass ? 'text' : 'password'}
-                minLength={MIN_PASSWORD_LENGTH}
                 maxLength={MAX_PASSWORD_LENGTH}
+                minLength={MIN_PASSWORD_LENGTH}
+                name='password'
+                onChange={handleChange}
+                required
+                type={revealPass ? 'text' : 'password'}
+                value={formData.password}
               />
               <br />
               <PasswordButton revealPass={revealPass} setRevealPass={setRevealPass} />

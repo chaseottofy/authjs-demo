@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import { ROUTE_RECORDS } from '@/data/constants';
 
-import Icons from '../Icons/Icons';
+import Icon from '../Icons/Icon';
 import styles from './Header.module.css';
 import LogInForm from '../LogInForm/LogInForm';
 import ThemeButton from '../ThemeButton/ThemeButton';
@@ -14,7 +14,6 @@ import Button from '../ui/Button/Button';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import { useModal } from '@/hooks';
 
-const { Logo, GithubIcon, Menu } = Icons;
 const {
   githubRoute,
   homeRoute,
@@ -32,9 +31,7 @@ export default function Header() {
     showModal((onClose) => (
       <LogInForm onClose={() => {
         setShowLogIn(false);
-        if (onClose) {
-          onClose();
-        }
+        if (onClose) onClose();
       }}
       />
     ));
@@ -49,7 +46,7 @@ export default function Header() {
       <div className={styles.content}>
         <div className={styles.col1}>
           <NavLink props={homeRoute} className={styles.logo}>
-            <Logo className={`${styles['logo-svg']} svg-1`} />
+            <Icon title='Logo' className={`${styles['logo-svg']} svg-1`} />
           </NavLink>
         </div>
 
@@ -80,7 +77,7 @@ export default function Header() {
           </Button>
 
           <NavLink props={githubRoute} className={`${styles['github-btn--header']} btn-icon1`}>
-            <GithubIcon className='svg-4' />
+          <Icon title='GithubIcon' className='svg-4' />
           </NavLink>
 
           <ThemeButton
@@ -96,7 +93,7 @@ export default function Header() {
             id='log-in-btn'
             hidden={true}
           >
-            <Menu className='svg-2' />
+            <Icon title='Menu' className='svg-2' />
           </Button>
         </div>
       </div>

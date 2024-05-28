@@ -24,7 +24,7 @@ import {
  * Moon
  * Sun
  */
-const Icons: IconsInterface = {
+const IconsData: IconsInterface = {
   AlertBadge: (props?: IconProps) => (
     <svg
       fill='none'
@@ -305,4 +305,4 @@ const Icons: IconsInterface = {
   ),
 };
 
-export default Icons;
+export default IconsData;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Icons from '../../Icons/Icons';
+import Icon from '../../Icons/Icon';
 
 import styles from './InputAlert.module.css';
 
@@ -13,14 +13,13 @@ export default function InputAlert({
   message,
   type,
 }: InputAlertProps) {
-  const { ErrorBadge, AlertBadge } = Icons;
 
   return (
     <p className={styles[`${type}`]}>
       <span className={styles[`${type}-icon`]}>
         {type === 'error'
-          ? <ErrorBadge className={styles.errorBadge} />
-          : <AlertBadge className={styles.alertBadge} />}
+          ? <Icon title='ErrorBadge' className={styles.errorBadge} />
+          : <Icon title='AlertBadge' className={styles.alertBadge} />}
       </span>
       <span className={styles[`${type}-text`]}>{message}</span>
     </p>
