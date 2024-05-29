@@ -210,7 +210,7 @@
 
 @media screen and (max-width: 380px) {
   .log-in--btn {
-    min-width: auto !important;
     width: fit-content;
+    min-width: auto !important;
   }
 }

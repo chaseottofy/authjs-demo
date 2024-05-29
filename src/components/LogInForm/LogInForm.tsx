@@ -1,11 +1,8 @@
 'use client';
 
 import * as React from 'react';
-// import { createClient } from '@/server/supabase/server';
-// import { useRouter } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-
 
 import styles from './LogInForm.module.css';
 import { type FormData } from '@/models/schema';

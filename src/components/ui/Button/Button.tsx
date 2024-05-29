@@ -1,5 +1,9 @@
 import * as React from 'react';
 
+export type LoginResponse = {
+  error?: string;
+};
+// Promise<LoginResponse>
 export type ButtonBaseProps = {
   disabled?: boolean;
   title?: string;
@@ -21,6 +25,8 @@ export type ButtonBaseProps = {
   form?: string;
   formTarget?: string;
   name?: string;
+  // formAction?: Promise<LoginResponse>;
+  formAction?: any;
   value?: string | string[] | number;
 };
 
@@ -43,7 +49,6 @@ export default function Button({
   type = 'button',
   hidden = false,
   children,
-
   ...rest
 }: ButtonProps) {
   return (

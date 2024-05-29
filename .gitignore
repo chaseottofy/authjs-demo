@@ -3,6 +3,10 @@
 ignore/
 # dependencies
 /node_modules
+__tests__
+.test
+.setup
+.config
 /.pnp
 .pnp.js
 .yarn/install-state.gz

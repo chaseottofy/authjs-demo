@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import styles from './Input.module.css';
-
 export interface RestInputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;

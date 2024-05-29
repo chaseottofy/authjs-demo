@@ -77,6 +77,11 @@ export interface User {
   password: string;
 }
 
+export interface MyData {
+  email: string;
+  password: string;
+}
+
 export interface UserRequest {
   email: string;
   password: string;

@@ -77,7 +77,7 @@ export default function Header() {
           </Button>
 
           <NavLink props={githubRoute} className={`${styles['github-btn--header']} btn-icon1`}>
-          <Icon title='GithubIcon' className='svg-4' />
+            <Icon title='GithubIcon' className='svg-4' />
           </NavLink>
 
           <ThemeButton
