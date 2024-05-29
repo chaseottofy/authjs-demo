@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useTheme as useNextTheme } from 'next-themes';
-import Button from '@/components/ui/Button/Button';
-import Icon from '@/components/Icons/Icon';
 
+import Icon from '@/components/Icons/Icon';
+import Button from '@/components/ui/Button/Button';
 import Skeleton from '@/components/ui/Skeleton/Skeleton';
 
 export default function ThemeButton({

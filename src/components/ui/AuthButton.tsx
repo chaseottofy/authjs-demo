@@ -1,6 +1,7 @@
-import { createClient } from "ignore/server/supabase/server";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import { createClient } from 'ignore/server/supabase/server';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+
 import Button from '@/components/ui/Button/Button';
 
 export default async function AuthButton({
@@ -15,7 +16,8 @@ export default async function AuthButton({
   } = await supabase.auth.getUser();
 
   const signOut = async () => {
-    // "use server";
+    'use server';
+
     const supabase = createClient();
     await supabase.auth.signOut();
     return redirect('/');
@@ -32,16 +34,15 @@ export default async function AuthButton({
         </Button>
       </form>
     );
-  } else {
-    return (
-      <Link href="/login">
-        log in
-        {/* <a> */}
-        {/* <Button
+  }
+  return (
+    <Link href='/login'>
+      log in
+      {/* <a> */}
+      {/* <Button
             className={className}
           >Log In</Button> */}
-        {/* </a> */}
-      </Link>
-    );
-  }
+      {/* </a> */}
+    </Link>
+  );
 }

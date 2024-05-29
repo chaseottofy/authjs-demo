@@ -1,25 +1,26 @@
 'use client';
 
 import * as React from 'react';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-import styles from './LogInForm.module.css';
+import {
+  MAX_INPUT_LENGTHS,
+  MAX_TIMEOUT,
+  MIN_PASSWORD_LENGTH,
+} from '@/data/constants';
+import { useModal } from '@/hooks';
 import { type FormData } from '@/models/schema';
 import { validateForm } from '@/validation/validateForm';
-import {
-  MAX_TIMEOUT,
-  MAX_INPUT_LENGTHS,
-  MIN_PASSWORD_LENGTH
-} from '@/data/constants';
 
-import Button from '../ui/Button/Button';
 import Icon from '../Icons/Icon';
+import Button from '../ui/Button/Button';
 import Input from '../ui/Input/Input';
 import Label from '../ui/Label/Label';
 import PasswordButton from '../ui/PasswordButton/PasswordButton';
 import Spinner from '../ui/Spinner/Spinner';
-import { useModal } from '@/hooks';
+
+import styles from './LogInForm.module.css';
 
 const {
   password: MAX_PASSWORD_LENGTH,
@@ -27,19 +28,28 @@ const {
 } = MAX_INPUT_LENGTHS;
 
 export default function LogInForm({
-  onClose
+  onClose,
 }: {
   onClose: () => void;
 }) {
   const router = useRouter();
   const { updateModal } = useModal();
 
-  const [chooseEmail, setChooseEmail] = useState<boolean>(false) as [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  const [chooseEmail, setChooseEmail] = useState<boolean>(false) as [
+    boolean,
+    React.Dispatch<React.SetStateAction<boolean>>,
+  ];
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [revealPass, setRevealPass] = useState<boolean>(false);
 
-  const [inputWarn, setInputWarn] = useState<string>('') as [string, React.Dispatch<React.SetStateAction<string>>];
-  const [serverMessage, setServerMessage] = useState<string>('') as [string, React.Dispatch<React.SetStateAction<string>>];
+  const [inputWarn, setInputWarn] = useState<string>('') as [
+    string,
+    React.Dispatch<React.SetStateAction<string>>,
+  ];
+  const [serverMessage, setServerMessage] = useState<string>('') as [
+    string,
+    React.Dispatch<React.SetStateAction<string>>,
+  ];
 
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -47,24 +57,29 @@ export default function LogInForm({
     isSignUp: false,
   }) as [FormData, React.Dispatch<React.SetStateAction<FormData>>];
 
-  const [formErrors, setFormErrors] = useState<Partial<Record<keyof FormData, string | undefined>>>({
+  const [
+    formErrors,
+    setFormErrors,
+  ] = useState<Partial<Record<keyof FormData, string | undefined>>>({
     email: undefined,
     password: undefined,
     isSignUp: undefined,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked, validity, validationMessage } = e.target;
+    const {
+      name, value, type, checked, validity, validationMessage,
+    } = e.target;
     const { valid } = validity;
 
     setFormErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: valid ? undefined : validationMessage
+      [name]: valid ? undefined : validationMessage,
     }));
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
@@ -91,12 +106,13 @@ export default function LogInForm({
       if (response.status === 200) {
         onClose();
         router.push('/dashboard');
-        return;
-      }
-      else if (response.status === 201 ) {
+      } else if (response.status === 201) {
         updateModal(() => (
           <div className={styles['form-error']}>
-            <h2>USER: {email}</h2>
+            <h2>
+              USER:
+              {email}
+            </h2>
             <span>Success! Redirecting.</span>
           </div>
         ));
@@ -104,16 +120,14 @@ export default function LogInForm({
           onClose();
           router.push('/dashboard');
         }, 2_000);
-        return;
-      }
-      else {
+      } else {
         const errorData = await response.json();
-        console.log(errorData)
+        console.log(errorData);
         setServerMessage(errorData.error);
         if ('input' in errorData) setInputWarn(errorData.input);
         setIsSubmitting(false);
       }
-    } catch (error) {
+    } catch {
       setIsSubmitting(false);
       updateModal(() => (
         <div className={styles['form-error']}>
@@ -121,7 +135,6 @@ export default function LogInForm({
           <span>Please try again later.</span>
         </div>
       ));
-      return;
     }
   };
 
@@ -135,7 +148,7 @@ export default function LogInForm({
       >
         <div
           className={styles['server-message']}
-          hidden={!serverMessage.length}
+          hidden={serverMessage.length === 0}
         >
           <span className={styles.message}>{serverMessage}</span>
         </div>

@@ -5,5 +5,5 @@ export default async function Dashboard() {
     <Main>
       Dashboard
     </Main>
-  )
+  );
 }

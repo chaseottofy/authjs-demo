@@ -56,17 +56,13 @@ module.exports = {
     'import/extensions': 0,
     'import/prefer-default-export': 0,
 
-
-    // AlLY
-    // 'jsx-a11y/click-events-have-key-events': 0,
-    // 'jsx-a11y/label-has-associated-control': [2, {
-    //   controlComponents: ['HookFormInput'],
-    //   depth: 3
-    // }],
-    // 'jsx-a11y/no-autofocus': 0,
-    // 'jsx-a11y/no-noninteractive-element-to-interactive-role': 0,
-
-
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/label-has-associated-control': [2, {
+      controlComponents: ['HookFormInput'],
+      depth: 3
+    }],
+    'jsx-a11y/no-autofocus': 0,
+    'jsx-a11y/no-noninteractive-element-to-interactive-role': 0,
     'jsx-quotes': [1, 'prefer-single'],
     'linebreak-style': 0,
     'no-console': 0,

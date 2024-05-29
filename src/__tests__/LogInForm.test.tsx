@@ -1,10 +1,16 @@
 // import * as React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+
 import LogInForm from '@/components/LogInForm/LogInForm';
 
 describe('MyForm', () => {
   test('renders form fields correctly', () => {
-    render(<LogInForm />);
+    render(
+      <LogInForm onClose={() => {
+        console.log('closed');
+      }}
+      />,
+    );
     // screen.debug();
     expect(screen.getByLabelText('email *')).toBeInTheDocument();
     expect(screen.getByLabelText('password *')).toBeInTheDocument();
@@ -20,6 +26,5 @@ describe('MyForm', () => {
 //   //   // expect(await screen.findByText('Email is required')).toBeInTheDocument();
 //   //   // expect(screen.getByText('Password is required')).toBeInTheDocument();
 //   // });
-
 //   // Add more test cases as needed
 // });

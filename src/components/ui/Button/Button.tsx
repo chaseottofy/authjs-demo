@@ -25,8 +25,6 @@ export type ButtonBaseProps = {
   form?: string;
   formTarget?: string;
   name?: string;
-  // formAction?: Promise<LoginResponse>;
-  formAction?: any;
   value?: string | string[] | number;
 };
 

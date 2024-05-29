@@ -1,10 +1,11 @@
 import * as React from 'react';
 
-import styles from './MobileMenu.module.css';
+import { ROUTE_RECORDS } from '@/data/constants';
 
 import NavLink from '../Nav/NavLink';
 
-import { ROUTE_RECORDS } from '@/data/constants';
+import styles from './MobileMenu.module.css';
+
 const {
   // githubRoute,
   homeRoute,
@@ -18,13 +19,11 @@ export default function MobileMenu() {
       className={styles.container}
     >
       <ul className={styles['nav-list']}>
-        {[homeRoute, notesRoute, dashboardRoute].map((route, i) => {
-          return (
-            <li className={styles['nav-item']} key={route.name + i}>
-              <NavLink props={route} className={`${styles['nav-link']} link-1`} />
-            </li>
-          );
-        })}
+        {[homeRoute, notesRoute, dashboardRoute].map((route) => (
+          <li className={styles['nav-item']} key={route.name}>
+            <NavLink props={route} className={`${styles['nav-link']} link-1`} />
+          </li>
+        ))}
       </ul>
     </div>
   );

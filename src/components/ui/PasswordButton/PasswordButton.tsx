@@ -2,7 +2,9 @@ import * as React from 'react';
 
 import Icon from '@/components/Icons/Icon';
 import { SetStateType } from '@/models/interfaces';
+
 import Button from '../Button/Button';
+
 import styles from './PasswordButton.module.css';
 
 function PasswordButton({

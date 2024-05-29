@@ -16,8 +16,8 @@ export default function ModalProvider({
   }, []);
 
   const showModal = useCallback((content: ModalContent) => {
-    setModalProps({ 
-      isOpen: true, 
+    setModalProps({
+      isOpen: true,
       onClose: hideModal,
       content,
     });

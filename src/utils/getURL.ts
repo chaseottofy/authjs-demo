@@ -3,8 +3,6 @@ export const getURL = (path: string = '') => {
 
   url = url.replace(/\/+$/, '');
   url = url.includes('http') ? url : `https://${url}`;
-
-  path = path.replace(/^\/+/, '');
-
-  return path ? `${url}/${path}` : url;
+  const formattedPath = path.replace(/^\/+/, '');
+  return formattedPath ? `${url}/${formattedPath}` : url;
 };

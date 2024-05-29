@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 // import { createClient } from 'ignore/server/supabase/server';
-
 import Main from '@/components/Main/Main';
 
 export default async function Home() {
@@ -17,10 +16,8 @@ export default async function Home() {
   // const isSupabaseConnected = canInitSupabaseClient();
 
   return (
-    <>
-      <Main>
-        main
-      </Main>
-    </>
+    <Main>
+      main
+    </Main>
   );
 }

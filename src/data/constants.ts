@@ -22,7 +22,7 @@ export const MAX_INPUT_LENGTHS: Record<string, number> = {
   search: 30,
   tel: 15,
   url: 100,
-}
+};
 
 export const INVALID_CHARS: Record<string, string> = {
   ' ': 'space',
@@ -37,4 +37,3 @@ export const INVALID_CHARS: Record<string, string> = {
   '\r': 'carriage return',
   '\f': 'form feed',
 };
-

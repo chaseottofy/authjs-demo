@@ -1,5 +1,6 @@
 // app/api/login/route.ts
 import { NextRequest, NextResponse } from 'next/server';
+
 import supabase from '@/lib/supabase';
 
 interface RequestBody {
@@ -26,7 +27,7 @@ export async function signIn(request: NextRequest) {
     if (existingUser) {
       return NextResponse.json(
         { error: 'You are already signed up. Please login.' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -41,26 +42,24 @@ export async function signIn(request: NextRequest) {
     }
 
     return NextResponse.json({ message: 'User created successfully' }, { status: 201 });
-  } else {
-    const { data: { user }, error: signInError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (signInError) {
-      if (signInError.message === 'Invalid login credentials') {
-        return NextResponse.json(
-          { error: 'Wrong email or password! Please try again.' },
-          { status: 401 }
-        );
-      } else {
-        console.error('Error signing in:', signInError);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-      }
-    }
-
-    return NextResponse.json({ message: 'Login successful', user }, { status: 200 });
   }
+  const { data: { user }, error: signInError } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (signInError) {
+    if (signInError.message === 'Invalid login credentials') {
+      return NextResponse.json(
+        { error: 'Wrong email or password! Please try again.' },
+        { status: 401 },
+      );
+    }
+    console.error('Error signing in:', signInError);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+
+  return NextResponse.json({ message: 'Login successful', user }, { status: 200 });
 }
 
 export async function POST(request: NextRequest) {

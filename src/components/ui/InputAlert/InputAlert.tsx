@@ -13,7 +13,6 @@ export default function InputAlert({
   message,
   type,
 }: InputAlertProps) {
-
   return (
     <p className={styles[`${type}`]}>
       <span className={styles[`${type}-icon`]}>

@@ -1,27 +1,21 @@
 'use client';
 
-import React from 'react';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
+
 import { useClickOutside } from '@/hooks';
-import Button from '../Button/Button';
-import Icon from '../../Icons/Icon';
 import type { ModalProps } from '@/models/interfaces';
+
+import Icon from '../../Icons/Icon';
+import Button from '../Button/Button';
 
 import styles from './Modal.module.css';
 
-/**
- * 
- * Used in conjunction with a ModalProvider that wraps app
- * 
- */
 export default function Modal({
   isOpen,
   onClose,
   content,
 }: ModalProps) {
-  if (!isOpen) return null;
   const modalRef = useClickOutside<HTMLDivElement>(onClose) as React.RefObject<HTMLDivElement>;
-
   const handleOverlayClick = useCallback(
     (event: React.MouseEvent) => {
       if (event.target === modalRef.current) {
@@ -30,6 +24,7 @@ export default function Modal({
     },
     [onClose, modalRef],
   );
+  if (!isOpen) return null;
 
   return (
     <div
@@ -40,15 +35,15 @@ export default function Modal({
     >
       <div
         className={styles.modal}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-title"
+        role='dialog'
+        aria-modal='true'
+        aria-labelledby='modal-title'
       >
         <div
           className={styles['modal-header']}
         >
           <h2
-            id="modal-title"
+            id='modal-title'
             className={styles['modal-title']}
           >
             --
@@ -56,7 +51,7 @@ export default function Modal({
           <Button
             className='btn-4'
             onClick={onClose}
-            aria-label="Close"
+            aria-label='Close'
           >
             <Icon title='Close' className='svg-4' />
           </Button>

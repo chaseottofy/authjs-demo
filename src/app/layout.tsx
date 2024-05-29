@@ -1,10 +1,12 @@
 import * as React from 'react';
+import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import NextThemeProvider from '@/providers/themeProvider';
-import ModalProvider from '@/providers/modalProvider';
+
 import Gradient from '@/components/Gradient/Gradient';
 import Header from '@/components/Header/Header';
-import type { Metadata } from 'next';
+import ModalProvider from '@/providers/modalProvider';
+import NextThemeProvider from '@/providers/themeProvider';
+
 import * as shared from './meta';
 
 import '@/styles/root.css';
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000"
+      : 'http://localhost:3000',
   ),
   ...shared,
 };
@@ -35,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning>
       <body className={Inter.variable} id='root'>
         <NextThemeProvider>
           <ModalProvider>

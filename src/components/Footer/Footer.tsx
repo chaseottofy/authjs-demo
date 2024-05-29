@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer>footer</footer>
     // <footer className={styles.footer}>
-      // <div className={styles.content}>footer</div>
+  // <div className={styles.content}>footer</div>
     // </footer>
   );
 }

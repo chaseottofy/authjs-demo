@@ -4,15 +4,16 @@ import * as React from 'react';
 import { useState } from 'react';
 
 import { ROUTE_RECORDS } from '@/data/constants';
+import { useModal } from '@/hooks';
 
 import Icon from '../Icons/Icon';
-import styles from './Header.module.css';
 import LogInForm from '../LogInForm/LogInForm';
-import ThemeButton from '../ThemeButton/ThemeButton';
-import NavLink from '../Nav/NavLink';
-import Button from '../ui/Button/Button';
 import MobileMenu from '../MobileMenu/MobileMenu';
-import { useModal } from '@/hooks';
+import NavLink from '../Nav/NavLink';
+import ThemeButton from '../ThemeButton/ThemeButton';
+import Button from '../ui/Button/Button';
+
+import styles from './Header.module.css';
 
 const {
   githubRoute,
@@ -53,13 +54,11 @@ export default function Header() {
         <div className={styles.col2}>
           <nav className={styles.nav}>
             <ul className={styles['nav-list']}>
-              {[homeRoute, notesRoute, dashboardRoute].map((route, i) => {
-                return (
-                  <li className={styles['nav-item']} key={route.name + i}>
-                    <NavLink props={route} className={`${styles['nav-link']} link-1`} />
-                  </li>
-                );
-              })}
+              {[homeRoute, notesRoute, dashboardRoute].map((route) => (
+                <li className={styles['nav-item']} key={route.name}>
+                  <NavLink props={route} className={`${styles['nav-link']} link-1`} />
+                </li>
+              ))}
             </ul>
           </nav>
         </div>
@@ -69,7 +68,7 @@ export default function Header() {
             className={`${styles['log-in--btn']} btn-primary2`}
             onClick={handleToggleLogIn}
             title='Open Form'
-            aria-haspopup={true}
+            aria-haspopup
             aria-expanded={showLogIn}
             id='log-in-btn'
           >
@@ -88,10 +87,10 @@ export default function Header() {
             className={`${styles['menu-btn--header']} btn-icon1`}
             type='button'
             onClick={handleToggleMenu}
-            aria-haspopup={true}
+            aria-haspopup
             aria-expanded={showLogIn}
             id='log-in-btn'
-            hidden={true}
+            hidden
           >
             <Icon title='Menu' className='svg-2' />
           </Button>

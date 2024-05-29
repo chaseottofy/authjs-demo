@@ -7,9 +7,9 @@ type DescriptionType = Metadata['description'];
 type IconsType = Metadata['icons'];
 
 export const authors: AuthorType = [
-  { 
-    name: 'chase ottofy', 
-    url: 'https://ottofy.dev' 
+  {
+    name: 'chase ottofy',
+    url: 'https://ottofy.dev',
   },
 ];
 export const creator: CreatorType = 'chase ottofy';

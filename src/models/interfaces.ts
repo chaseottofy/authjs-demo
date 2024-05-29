@@ -29,7 +29,6 @@ export interface FormProps {
   inputs: Inputs;
 }
 
-
 export interface GetUsersResponsePayload {
   id: number;
   content: string | null;
